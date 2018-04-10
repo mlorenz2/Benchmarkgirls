@@ -1,0 +1,109 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+   repositories {
+      jcenter()
+      maven {
+         url 'https://maven.google.com/'
+         name 'Google'
+      }
+      google()
+   }
+   dependencies {
+      classpath 'com.android.tools.build:gradle:3.1.1'
+      classpath 'com.google.gms:google-services:3.1.1'
+      // NOTE: Do not place your application dependencies here; they belong
+      // in the individual module build.gradle files
+   }
+}
+
+allprojects {
+   repositories {
+      jcenter()
+      maven { url "https://jitpack.io" }
+      maven {
+         url 'https://maven.google.com/'
+         name 'Google'
+      }
+   }
+}
+
+task clean(type: Delete) {
+   delete rootProject.buildDir
+}
+ext {
+
+   //Android
+   buildToolsVersion = "27.0.3"
+   minSdkVersion = 21
+   sdkVersion = 26
+
+   //Libraries
+   supportLibVersion = '26.1.0'
+   rxJavaVersion = '2.0.9'
+   rxAndroidVersion = '2.0.1'
+   daggerVersion = "2.10"
+   javaxAnnotationVersion = '1.0'
+   retrofitVersion = "2.3.0"
+   butterknifeVersion = '8.5.1'
+   javaxInjectVersion = '1'
+   okHttpVersion = '3.7.0'
+   retrofitRxAdapterVersion = '2.2.0'
+   okHttpLoggingInterceptorVersion = '3.7.0'
+   fireBaseDataBase = '11.4.2'
+   fireBaseWrapperVersion = '1.1.3'
+   searchViewVersion = '1.4.0'
+
+   //Testing
+   jUnitVersion = '4.12'
+   assertJVersion = '3.6.2'
+
+   //Development
+   stethoVersion = '1.4.2'
+   hockeyAppVersion = '4.1.3'
+   timberVersion = '4.5.1'
+
+
+   presentationDependencies = [
+         appcompat: "com.android.support:appcompat-v7:$supportLibVersion",
+         design: "com.android.support:design:$supportLibVersion",
+         card: "com.android.support:cardview-v7:$supportLibVersion",
+         rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+         rxJava: "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+         butterknife: "com.jakewharton:butterknife:$butterknifeVersion",
+         butterknifeCompiler: "com.jakewharton:butterknife-compiler:$butterknifeVersion",
+         dagger: "com.google.dagger:dagger:$daggerVersion",
+         daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+         javaxAnnotation: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+         searchView: "com.miguelcatalan:materialsearchview:$searchViewVersion"
+   ]
+
+   domainDependencies = [
+         javaxAnnotation: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+         javaxInject: "javax.inject:javax.inject:$javaxInjectVersion",
+         rxJava: "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+   ]
+
+   dataDependencies = [
+         daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+         dagger: "com.google.dagger:dagger:$daggerVersion",
+         retrofitConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+         retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+         rxJava: "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+         rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+         javaxAnnotation: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+         javaxInject: "javax.inject:javax.inject:$javaxInjectVersion",
+         androidAnnotations: "com.android.support:support-annotations:$supportLibVersion",
+         okHttp: "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+         retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitRxAdapterVersion}",
+         okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okHttpLoggingInterceptorVersion}",
+         fireBaseDatabase: "com.google.firebase:firebase-database:${fireBaseDataBase}",
+         fireBaseCore: "com.google.firebase:firebase-core:${fireBaseDataBase}",
+         fireBaseWrapper: "com.github.frangsierra:rx2firebase:${fireBaseWrapperVersion}"
+   ]
+
+
+   developmentDependencies = [
+         stetho: "com.facebook.stetho:stetho:$stethoVersion",
+   ]
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/error"
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:gravity="center"
+   android:visibility="gone">
+
+   <ImageView
+      android:id="@+id/noConnectionImage"
+      android:layout_width="106dp"
+      android:layout_height="106dp"
+      android:layout_centerInParent="true"
+      android:contentDescription="@string/no_connection_image"
+      android:src="@drawable/ic_network_error" />
+
+   <TextView
+      android:id="@+id/errorTitleTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/noConnectionImage"
+      android:layout_centerInParent="true"
+      android:layout_marginTop="@dimen/key_line_1"
+      android:gravity="center"
+      android:text="@string/error_screen_description1"
+      android:textSize="18sp"
+      android:textStyle="bold" />
+
+   <TextView
+      android:id="@+id/errorSubtitleTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/errorTitleTextView"
+      android:layout_centerInParent="true"
+      android:layout_marginTop="@dimen/key_line_1"
+      android:gravity="center"
+      android:text="@string/error_screen_description2" />
+
+   <Button
+      android:id="@+id/retry"
+      android:layout_width="@dimen/error_retry_button_width"
+      android:layout_height="56dp"
+      android:layout_below="@id/errorSubtitleTextView"
+      android:layout_centerInParent="true"
+      android:layout_marginLeft="@dimen/key_line_1"
+      android:layout_marginRight="@dimen/key_line_1"
+      android:layout_marginTop="@dimen/key_line_1"
+      android:backgroundTint="@color/colorAccent"
+      android:text="@string/retry"
+      android:textColor="@android:color/white" />
+</RelativeLayout>

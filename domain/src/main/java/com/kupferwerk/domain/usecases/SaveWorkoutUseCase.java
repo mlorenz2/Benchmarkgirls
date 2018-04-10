@@ -1,0 +1,29 @@
+package com.kupferwerk.domain.usecases;
+
+import com.kupferwerk.domain.UseCase;
+import com.kupferwerk.domain.executor.PostExecutionThread;
+import com.kupferwerk.domain.executor.ThreadExecutor;
+import com.kupferwerk.domain.repo.WorkoutsRepository;
+import com.kupferwerk.domain.model.PerformedWorkout;
+
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
+
+public class SaveWorkoutUseCase extends UseCase<Void, PerformedWorkout> {
+
+   private WorkoutsRepository workoutsRepository;
+
+   @Inject
+   SaveWorkoutUseCase(ThreadExecutor threadExecutor,
+                             PostExecutionThread postExecutionThread,
+                             WorkoutsRepository workoutsRepository) {
+      super(threadExecutor, postExecutionThread);
+      this.workoutsRepository = workoutsRepository;
+   }
+
+   @Override
+   public Observable<Void> buildUseCaseObservable(PerformedWorkout performedWorkout) {
+      return workoutsRepository.saveWorkout(performedWorkout);
+   }
+}

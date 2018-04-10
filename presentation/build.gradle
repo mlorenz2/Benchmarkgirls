@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+    }
+}
+android {
+    def global = rootProject.extensions.getByName("ext")
+    compileSdkVersion global.getAt("sdkVersion")
+    buildToolsVersion global.getAt("buildToolsVersion")
+    defaultConfig {
+        applicationId "com.kupferwerk.benchmarkgirls"
+        minSdkVersion global.getAt("minSdkVersion")
+        targetSdkVersion global.getAt("sdkVersion")
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+
+
+    compile project(':domain')
+    compile project(':data')
+
+    compile presentationDependencies.appcompat
+    compile presentationDependencies.design
+    compile presentationDependencies.card
+    compile presentationDependencies.rxAndroid
+    compile presentationDependencies.rxJava
+    compile presentationDependencies.butterknife
+    compile presentationDependencies.dagger
+    compile presentationDependencies.searchView
+    annotationProcessor presentationDependencies.butterknifeCompiler
+    annotationProcessor presentationDependencies.daggerCompiler
+    provided presentationDependencies.javaxAnnotation
+    compile developmentDependencies.stetho
+}

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "833185579348",
+    "firebase_url": "https://benchmarkgirls-c9ebc.firebaseio.com",
+    "project_id": "benchmarkgirls-c9ebc",
+    "storage_bucket": "benchmarkgirls-c9ebc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833185579348:android:d9e663121ba4be90",
+        "android_client_info": {
+          "package_name": "com.kupferwerk.benchmarkgirls"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833185579348-14j5ts1sj28v7lbi07ppjfft671grqht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeRexnhl2PtnIJK3Ci7ZBmSAAw_-fH07w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

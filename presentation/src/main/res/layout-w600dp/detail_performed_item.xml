@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="@dimen/main_overview_list_width"
+   android:layout_height="wrap_content"
+   android:layout_marginEnd="16dp"
+   android:layout_marginStart="16dp"
+   android:background="@android:color/white"
+   android:orientation="horizontal"
+   android:paddingEnd="16dp"
+   android:paddingStart="16dp">
+
+   <TextView
+      android:id="@+id/workout_performed"
+      android:layout_width="match_parent"
+      android:layout_height="64dp"
+      android:layout_weight="1"
+      android:gravity="start"
+      tools:text="20.10.2017" />
+
+   <TextView
+      android:id="@+id/workout_duration"
+      android:layout_width="match_parent"
+      android:layout_height="64dp"
+      android:layout_weight="1"
+      android:gravity="center"
+      tools:text="hh:mm:ss" />
+
+   <TextView
+      android:id="@+id/workout_diff"
+      android:layout_width="match_parent"
+      android:layout_height="64dp"
+      android:layout_weight="1"
+      android:gravity="end"
+      android:textColor="@color/bilbao"
+      tools:text="hh:mm:ss" />
+
+</LinearLayout>

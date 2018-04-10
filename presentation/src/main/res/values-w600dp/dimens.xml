@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <dimen name="main_overview_list_width">600dp</dimen>
+   <dimen name="error_retry_button_width">300dp</dimen>
+   <dimen name="key_line_1">24dp</dimen>
+</resources>

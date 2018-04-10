@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:background="@drawable/backgroud_top_round_corners"
+   android:clipToPadding="true"
+   android:orientation="vertical">
+
+   <TextView
+      android:layout_width="match_parent"
+      android:layout_height="36dp"
+      android:background="@drawable/backgroud_top_round_corners"
+      android:backgroundTint="@color/colorAccent"
+      android:gravity="center"
+      android:text="@string/overview"
+      android:textColor="@android:color/white"
+      android:textStyle="bold" />
+
+   <include
+      android:id="@+id/main_overview_recycler"
+      layout="@layout/recycler" />
+
+   <ImageView
+      android:id="@+id/overview_collapse_icon"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+</LinearLayout>

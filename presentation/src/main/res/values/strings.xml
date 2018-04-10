@@ -1,0 +1,33 @@
+<resources>
+   <string name="app_name">Benchmarkgirls</string>
+   <string name="action_add_workout">add performedWorkout</string>
+   <string name="add_new_girl">Add new Girl</string>
+   <string name="search">Search</string>
+   <string name="add">add</string>
+   <string name="add_workout_dialog_title">%1$s - %2$s</string>
+   <string name="detail_header_time_HMS">%1$02d h %2$02d min %3$02d sec</string>
+   <string name="detail_header_time_MS">%1$02d min %2$02d sec</string>
+   <string name="detail_header_time_S">%1$02d sec</string>
+   <string name="detail_item_duration_time_HMS">%1$02d:%2$02d:%3$02d</string>
+   <string name="detail_item_duration_time_MS">%1$02d:%2$02d</string>
+   <string name="detail_item_duration_time_HMS_negative">-%1$02d:%2$02d:%3$02d</string>
+   <string name="detail_item_duration_time_MS_negative">-%1$02d:%2$02d</string>
+   <string name="detail_item_diff_time_HMS">%1$02d:%2$02d:%3$02d</string>
+   <string name="detail_item_diff_time_MS">%1$02d:%2$02d</string>
+   <string name="detail_item_diff_time_S">%1$02d</string>
+   <string name="overview">Overview</string>
+   <string name="no_data">Perform your first workout to display data</string>
+   <string name="search_hint">Benchmark Girl Name</string>
+   <string name="query_not_found">Workout $1%s could not found</string>
+   <string name="log">Log</string>
+   <string name="cancel">Cancel</string>
+   <string name="error_too_less_duration">Cannot log a zero time</string>
+   <string name="retry">retry</string>
+   <string name="error_screen_description1">Oops.. something went wrong.</string>
+   <string name="error_screen_description2">This could be for several reasons.</string>
+   <string name="no_connection_image">no connection image</string>
+   <string name="seconds_abr">S</string>
+   <string name="minutes_abr">M</string>
+   <string name="hours_abr">H</string>
+
+</resources>

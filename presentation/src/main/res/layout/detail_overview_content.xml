@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:orientation="vertical"
+   android:paddingBottom="8dp"
+   android:paddingTop="8dp">
+
+   <TextView
+      android:id="@+id/workout_name"
+      style="@style/GirlNameListItem"
+      tools:text="FRAN"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      android:background="?android:attr/selectableItemBackground"
+      android:gravity="center" />
+
+   <TextView
+      android:id="@+id/best_performed"
+      style="@style/GirlNameListItem"
+      tools:text="7 min 12 sec"
+      android:layout_width="match_parent"
+      android:layout_height="72dp"
+      android:background="?android:attr/selectableItemBackground"
+      android:gravity="center"
+      android:textColor="@color/bilbao" />
+
+   <TextView
+      android:id="@+id/workout_description"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:paddingBottom="8dp"
+      android:paddingEnd="16dp"
+      android:paddingStart="16dp"
+      android:paddingTop="8dp"
+      android:textSize="16sp"
+      android:textStyle="bold" />
+
+   <ListView
+      android:id="@+id/exercise_list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+</LinearLayout>

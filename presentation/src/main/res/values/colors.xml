@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <color name="colorPrimary">@color/pomegranate</color>
+   <color name="colorPrimaryDark">@color/pomegranate_dark</color>
+   <color name="colorAccent">@color/california</color>
+
+   <color name="pomegranate_dark">#de3315</color>
+   <color name="pomegranate">#fc3f1c</color>
+   <color name="california">#fd980a</color>
+   <color name="bilbao">#417505</color>
+   <color name="monza">#d0021b</color>
+   <color name="boulder">#757575</color>
+   <color name="black_85">#D9000000</color>
+</resources>

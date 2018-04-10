@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_gravity="center"
+   android:orientation="vertical">
+
+   <ListView
+      android:id="@+id/exercise_list"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="2dp" />
+
+   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <com.kupferwerk.presentation.util.GirlsNumberPicker
+         android:id="@+id/numberPickerH"
+         max="24"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:theme="@style/DefaultNumberPickerTheme" />
+
+      <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:text="@string/hours_abr" />
+
+      <com.kupferwerk.presentation.util.GirlsNumberPicker
+         android:id="@+id/numberPickerM"
+         max="59"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:theme="@style/DefaultNumberPickerTheme" />
+
+      <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:text="@string/minutes_abr" />
+
+      <com.kupferwerk.presentation.util.GirlsNumberPicker
+         android:id="@+id/numberPickerS"
+         max="59"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:theme="@style/DefaultNumberPickerTheme" />
+
+      <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:text="@string/seconds_abr" />
+   </LinearLayout>
+</LinearLayout>
