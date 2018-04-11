@@ -9,6 +9,14 @@ buildscript {
     }
 }
 android {
+    signingConfigs {
+        config {
+            keyAlias 'development_keystore'
+            keyPassword 'benchmark123'
+            storeFile file('../development_keystore.jks')
+            storePassword 'benchmark123'
+        }
+    }
     def global = rootProject.extensions.getByName("ext")
     compileSdkVersion global.getAt("sdkVersion")
     buildToolsVersion global.getAt("buildToolsVersion")
@@ -24,17 +32,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
-
-
     compile project(':domain')
     compile project(':data')
-
     compile presentationDependencies.appcompat
     compile presentationDependencies.design
     compile presentationDependencies.card
