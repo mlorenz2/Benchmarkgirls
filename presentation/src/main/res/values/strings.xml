@@ -29,5 +29,6 @@
    <string name="seconds_abr">S</string>
    <string name="minutes_abr">M</string>
    <string name="hours_abr">H</string>
+   <string name="collapsing_icon">collapsing_icon</string>
 
 </resources>
