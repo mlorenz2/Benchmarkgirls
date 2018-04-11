@@ -1,35 +1,48 @@
 package com.kupferwerk.presentation.widget;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.kupferwerk.domain.DefaultObserver;
 import com.kupferwerk.domain.model.PerformedWorkout;
+import com.kupferwerk.domain.usecases.GetSortedPerformedWorkoutsUseCase;
 import com.kupferwerk.presentation.R;
-import com.kupferwerk.presentation.main.model.Performed;
+import com.kupferwerk.presentation.core.Injector;
+import com.kupferwerk.presentation.main.mapper.WorkoutToModelMapper;
 import com.kupferwerk.presentation.main.model.WorkoutViewModel;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
+import javax.inject.Inject;
 
 public class BGWidgetViewFactory implements RemoteViewsService.RemoteViewsFactory {
 
+   private class GetSortedPerformedWorkoutObserver extends DefaultObserver<List<PerformedWorkout>> {
+      @Override
+      public void onNext(List<PerformedWorkout> performedWorkouts) {
+         super.onNext(performedWorkouts);
+         dataList.clear();
+         dataList.addAll(workoutToModelMapper.transform(performedWorkouts));
+         mCountDownLatch.countDown();
+      }
+   }
+
+   @Inject
+   GetSortedPerformedWorkoutsUseCase getSortedPerformedWorkoutsUseCase;
+   @Inject
+   WorkoutToModelMapper workoutToModelMapper;
    private Context context;
    private List<WorkoutViewModel> dataList = new ArrayList<>();
-   private FirebaseDatabase database = FirebaseDatabase.getInstance();
-   private DatabaseReference saveRef = database.getReference("userid/data");
+   private CountDownLatch mCountDownLatch;
 
    public BGWidgetViewFactory(Context context) {
+      Injector.getAppComponent()
+              .inject(this);
       this.context = context;
    }
 
@@ -73,17 +86,20 @@ public class BGWidgetViewFactory implements RemoteViewsService.RemoteViewsFactor
 
    @Override
    public void onCreate() {
-      updateWorkouts();
    }
 
    @Override
    public void onDataSetChanged() {
-      Intent intent = new Intent();
-      intent.setAction(BGWidgetProvider.ACTION_DATA_UPDATED);
-      context.sendBroadcast(intent);
-      AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-      int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
-      appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);
+      mCountDownLatch = new CountDownLatch(1);
+      updateWorkouts();
+      try {
+         mCountDownLatch.await();
+         Intent intent = new Intent();
+         intent.setAction(BGWidgetProvider.ACTION_DATA_UPDATED);
+         context.sendBroadcast(intent);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
    }
 
    @Override
@@ -91,73 +107,7 @@ public class BGWidgetViewFactory implements RemoteViewsService.RemoteViewsFactor
 
    }
 
-   private List<WorkoutViewModel> transform(List<PerformedWorkout> performedWorkouts) {
-      Collections.sort(performedWorkouts, new Comparator<PerformedWorkout>() {
-         @Override
-         public int compare(PerformedWorkout t1,
-                            PerformedWorkout t2) {
-            return t1.getWorkout()
-                     .getName()
-                     .compareTo(t2.getWorkout()
-                                  .getName());
-         }
-      });
-      String currentName = "";
-      int index = -1;
-      List<WorkoutViewModel> workoutViewModels = new ArrayList<>();
-      for (PerformedWorkout performedWorkout : performedWorkouts) {
-         if (currentName.equals(performedWorkout.getWorkout()
-                                                .getName())) {
-            // add to existing
-            workoutViewModels.get(index)
-                             .getPerformedList()
-                             .add(new Performed(performedWorkout.getPerformedAt(),
-                                   performedWorkout.getDuration()));
-         } else {
-            // new view model
-            currentName = performedWorkout.getWorkout()
-                                          .getName();
-            WorkoutViewModel workoutViewModel = new WorkoutViewModel();
-            workoutViewModel.setWorkout(performedWorkout.getWorkout());
-            List<Performed> performedList = new ArrayList<>();
-            performedList.add(
-                  new Performed(performedWorkout.getPerformedAt(), performedWorkout.getDuration()));
-            workoutViewModel.setPerformedList(performedList);
-            workoutViewModels.add(workoutViewModel);
-            index++;
-         }
-      }
-
-      return workoutViewModels;
-   }
-
    private void updateWorkouts() {
-      saveRef.addListenerForSingleValueEvent(new ValueEventListener() {
-         @Override
-         public void onCancelled(DatabaseError databaseError) {
-
-         }
-
-         @Override
-         public void onDataChange(DataSnapshot dataSnapshot) {
-            List<PerformedWorkout> performedWorkoutList = new ArrayList<>();
-            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-               performedWorkoutList.add(snapshot.getValue(PerformedWorkout.class));
-            }
-
-            List<WorkoutViewModel> workoutViewModels = new ArrayList<>();
-            workoutViewModels.addAll(transform(performedWorkoutList));
-
-            dataList.addAll(workoutViewModels);
-
-            Intent intent = new Intent();
-            intent.setAction(BGWidgetProvider.ACTION_DATA_UPDATED);
-            context.sendBroadcast(intent);
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            int[] appWidgetIds =
-                  appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);
-         }
-      });
+      getSortedPerformedWorkoutsUseCase.execute(new GetSortedPerformedWorkoutObserver());
    }
 }

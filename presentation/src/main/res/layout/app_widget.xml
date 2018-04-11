@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/widget"
+   xmlns:android="http://schemas.android.com/apk/res/android"
    android:layout_width="match_parent"
-   android:id="@+id/widget"
    android:layout_height="wrap_content"
    android:background="@drawable/backgroud_top_round_corners"
    android:clipToPadding="true"

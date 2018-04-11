@@ -3,7 +3,7 @@
    android:initialKeyguardLayout="@layout/app_widget"
    android:initialLayout="@layout/app_widget"
    android:minHeight="40dp"
-   android:minWidth="180dp"
+   android:minWidth="230dp"
    android:previewImage="@mipmap/ic_launcher"
    android:resizeMode="horizontal|vertical"
    android:updatePeriodMillis="1800000"
